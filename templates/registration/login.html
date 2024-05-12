@@ -1,0 +1,36 @@
+{% extends "magasin/base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-lg-6">
+      <div class="card mt-5 shadow-sm border-0">
+        <div class="card-body">
+          <h2 class="card-title text-center mb-4">Se connecter</h2>
+          <form method="post">
+            {% csrf_token %}
+            {% if form.non_field_errors %}
+              {% for error in form.non_field_errors %}
+                <div class="alert alert-danger mb-3" role="alert">{{ error }}</div>
+              {% endfor %}
+            {% endif %}
+            <div class="mb-3">
+              <label for="id_username" class="form-label fw-bold">Nom d'utilisateur</label>
+              <input type="text" class="form-control" id="id_username" name="username" placeholder="Entrez votre nom d'utilisateur">
+            </div>
+            <div class="mb-3">
+              <label for="id_password" class="form-label fw-bold">Mot de passe</label>
+              <input type="password" class="form-control" id="id_password" name="password" placeholder="Entrez votre mot de passe">
+            </div>
+            <button type="submit" class="btn btn-primary w-100 mt-3">Se connecter</button>
+          </form>
+        </div>
+        <div class="card-footer text-center py-3 bg-transparent border-0">
+          <small class="d-block text-secondary">Pas encore inscrit.e? <a href="{% url 'register' %}" class="text-primary fw-bold">S'inscrire</a></small>
+          <small class="d-block text-secondary">Mot de passe oublié ? <a href="#" class="text-primary fw-bold">Renouveler mon mot de passe</a></small>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

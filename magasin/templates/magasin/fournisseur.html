@@ -1,0 +1,44 @@
+{% extends 'magasin/base.html' %}
+
+{% block title %}
+  Fournisseur
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid mt-5">
+    <div class="row">
+      <div class="col-lg-9 mx-auto">
+        <div class="card">
+          <div class="card-header bg-primary text-white text-center">
+            <h2>Liste des Fournisseurs</h2>
+          </div>
+          <div class="card-body">
+            <table class="table table-striped">
+              <thead>
+                <tr>
+                  <th>Nom</th>
+                  <th>Adresse</th>
+                  <th>Email</th>
+                  <th>Téléphone</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for fr in liste %}
+                  <tr>
+                    <td>{{ fr.nom }}</td>
+                    <td>{{ fr.adresse }}</td>
+                    <td>{{ fr.email }}</td>
+                    <td>{{ fr.telephone }}</td>
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          <div class="card-footer text-center">
+            <a href="{% url 'ajoutFournisseur' %}" class="btn btn-primary">Nouveau Fournisseur</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

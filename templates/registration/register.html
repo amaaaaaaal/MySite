@@ -1,0 +1,48 @@
+{% extends "magasin/base.html" %}
+
+{% block content %}
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-6">
+        <div class="card mt-5 shadow-sm border-0">
+          <div class="card-body">
+            <h2 class="card-title text-center mb-4">S'inscrire</h2>
+            <form method="post">
+              {% csrf_token %}
+              {% if form.non_field_errors %}
+                {% for error in form.non_field_errors %}
+                  <div class="alert alert-danger mb-3" role="alert">{{ error }}</div>
+                {% endfor %}
+              {% endif %}
+              <div class="mb-3">
+                <label for="id_username" class="form-label fw-bold">Nom d'utilisateur</label>
+                <input type="text" class="form-control" id="id_username" name="username" placeholder="Entrez votre nom d'utilisateur">
+                {% for error in form.username.errors %}
+                  <div class="alert alert-danger mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+              <div class="mb-3">
+                <label for="id_password1" class="form-label fw-bold">Mot de passe</label>
+                <input type="password" class="form-control" id="id_password1" name="password1" placeholder="Entrez votre mot de passe">
+                {% for error in form.password1.errors %}
+                  <div class="alert alert-danger mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+              <div class="mb-3">
+                <label for="id_password2" class="form-label fw-bold">Confirmer le mot de passe</label>
+                <input type="password" class="form-control" id="id_password2" name="password2" placeholder="Confirmez votre mot de passe">
+                {% for error in form.password2.errors %}
+                  <div class="alert alert-danger mt-1">{{ error }}</div>
+                {% endfor %}
+              </div>
+              <button type="submit" class="btn btn-primary w-100 mt-3">S'inscrire</button>
+            </form>
+          </div>
+          <div class="card-footer text-center py-3 bg-transparent border-0">
+            <small class="d-block text-secondary">Déjà inscrit.e? <a href="{% url 'login' %}" class="text-primary fw-bold">Se connecter</a></small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

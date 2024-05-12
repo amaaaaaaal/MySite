@@ -1,0 +1,35 @@
+{% extends 'magasin/base.html' %}
+
+{% block title %} Les Commandes {% endblock %}
+
+{% block content %}
+<!-- body -->
+<div class="container-fluid mt-3">
+    <div class="row">
+        <!-- all products -->
+        <div id='products' class="col-lg-9 mx-auto">
+            <div class="row row-cols-1 row-cols-md-3 g-4">
+                {% for commande in commandes %}
+                <div class="col">
+                    <div class="card h-100 border-0 shadow">
+                        <div class="card-body p-4">
+                            <p class="card-text text-danger fw-bold">{{ commande.dateCde }}</p>
+                            <p class="card-text fw-bold">Total: {{ commande.totalCde }}</p>
+                            <ul class="list-unstyled mb-0">
+                                {% for produit in commande.produits.all %}
+                                <li class="list-item d-flex align-items-center mb-2">
+                                    <i class="fas fa-check text-primary me-2"></i>
+                                    {{ produit }}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <a class="btn btn-outline-primary m-3" href="{% url 'ajoutCommande' %}">Nouveau Commande</a>
+        </div>
+    </div>
+</div>
+{% endblock %}
